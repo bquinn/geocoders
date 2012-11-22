@@ -1,4 +1,5 @@
 import urllib
+from django.utils.http import urlencode
 from utils import simplejson, geocoder_factory
 
 def geocode(q, email):
@@ -10,7 +11,7 @@ def geocode(q, email):
     """
 
     json = simplejson.load(urllib.urlopen(
-        'http://nominatim.openstreetmap.org/search?' + urllib.urlencode({
+        'http://nominatim.openstreetmap.org/search?' + urlencode({
             'q': q,
             'format': 'json',
             'email': email

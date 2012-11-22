@@ -1,5 +1,6 @@
 from utils import make_nsfind, ET, geocoder_factory
 import urllib
+from django.utils.http import urlencode
 
 # http://developer.yahoo.com/geo/placemaker/guide/api_docs.html
 
@@ -13,7 +14,7 @@ def geocode(q, api_key):
         'appid': api_key,
     }
     et = ET.parse(urllib.urlopen(
-        'http://wherein.yahooapis.com/v1/document', urllib.urlencode(args))
+        'http://wherein.yahooapis.com/v1/document', urlencode(args))
     )
     place = find(et, 'ns:document/ns:placeDetails/ns:place')
     if place is None:

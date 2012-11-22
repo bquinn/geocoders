@@ -1,11 +1,12 @@
 from utils import simplejson, geocoder_factory
 import urllib
+from django.utils.http import urlencode
 
 # http://www.geonames.org/export/geonames-search.html
 
 def geocode(q):
     data = simplejson.load(urllib.urlopen(
-        'http://ws.geonames.org/searchJSON?' + urllib.urlencode({
+        'http://ws.geonames.org/searchJSON?' + urlencode({
             'q': q,
             'maxRows': 1,
             'lang': 'en',

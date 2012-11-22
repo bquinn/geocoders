@@ -1,12 +1,13 @@
 from utils import make_nsfind, ET, geocoder_factory
 import urllib
+from django.utils.http import urlencode
 
 # http://developer.yahoo.com/maps/rest/V1/geocode.html
 
 def geocode(q, api_key):
     find = make_nsfind({'ns': 'urn:yahoo:maps'})
     args = {'location': q, 'appid': api_key}
-    url = 'http://local.yahooapis.com/MapsService/V1/geocode?%s' % urllib.urlencode(args)
+    url = 'http://local.yahooapis.com/MapsService/V1/geocode?%s' % urlencode(args)
     et = ET.parse(urllib.urlopen(url))
     
     result = find(et, '//ns:Result')

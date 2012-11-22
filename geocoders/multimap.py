@@ -1,11 +1,12 @@
 import urllib
+from django.utils.http import urlencode
 from utils import simplejson, geocoder_factory
 
 # http://www.multimap.com/openapidocs/1.2/web_service/ws_geocoding.htm
 
 def geocode(q, api_key):
     base_url = 'http://developer.multimap.com/API/geocode/1.2/%s' % urllib.quote(api_key)
-    json = simplejson.load(urllib.urlopen(base_url + '?' + urllib.urlencode({
+    json = simplejson.load(urllib.urlopen(base_url + '?' + urlencode({
             'qs': q,
             'output': 'json'
         })

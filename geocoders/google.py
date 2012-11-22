@@ -1,11 +1,12 @@
 import urllib
+from django.utils.http import urlencode
 from utils import simplejson, geocoder_factory
 
 # http://code.google.com/apis/maps/documentation/geocoding/index.html
 
 def geocode(q, api_key):
     json = simplejson.load(urllib.urlopen(
-        'http://maps.google.com/maps/geo?' + urllib.urlencode({
+        'http://maps.google.com/maps/geo?' + urlencode({
             'q': q,
             'output': 'json',
             'oe': 'utf8',
